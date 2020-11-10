@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import { get, noop, cloneDeep } from 'lodash';
 import { useQuery } from '@apollo/client';
 import { renderRoutes } from 'react-router-config';
-import { Container, Sidebar } from 'react-native-web-ui-components';
+import { Container, Sidebar, Text } from 'react-native-web-ui-components';
 import { isSSR } from 'react-native-web-ui-components/utils';
 import { useScreen } from 'react-native-web-ui-components/Screen';
 import { useAmp } from 'react-native-web-ui-components/Amp';
@@ -110,6 +110,7 @@ AmpSidebar.propTypes = {
   leftComponent: PropTypes.node.isRequired,
 };
 
+///////////////////Root Content is a sidebar
 const RootContent = memo((props) => {
   const amp = useAmp();
 
@@ -123,14 +124,15 @@ const RootContent = memo((props) => {
 
   return (
     <>
-      {amp ? <AmpSidebar leftComponent={leftComponent} /> : null}
+      {/* {amp ? <AmpSidebar leftComponent={leftComponent} /> : null} */}
       <Head />
       <Sidebar
         {...props}
         leftOnChange={setLeftOpen}
-        leftComponent={leftComponent}
+        leftComponent={leftComponent} //////Side bar Contents!
         edgeHitWidth={sidebarEdgeHitWidth}
       >
+        {/* ********************THESE ARE ROUTES CONTAINS **********************/}
         <Container style={styles.background}>
           {Platform.OS === 'web' && !window.FIRST_PAGE && !isSSR() ? <PageLoading {...props} /> : null}
           <ReRenderProvider value={reRender}>
@@ -139,6 +141,8 @@ const RootContent = memo((props) => {
             </PageScrollView>
           </ReRenderProvider>
         </Container>
+        {/* ********************THESE ARE ROUTES CONTAINS **********************/}
+
       </Sidebar>
     </>
   );
@@ -158,7 +162,11 @@ RootContent.propTypes = {
   setLeftOpen: PropTypes.func.isRequired,
 };
 
+
+///////////////////Here is the root!
+
 const Root = (props) => {
+  console.log([props])
   const { history } = props;
 
   const onClose = () => {

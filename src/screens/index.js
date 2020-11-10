@@ -1,4 +1,6 @@
 import React from 'react';
+import ContextProvider from '../context/Context';
+
 import { Redirect, useLocation } from 'react-router';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import { isSSR } from 'react-native-web-ui-components/utils';
@@ -115,4 +117,10 @@ const EntryScreen = (props) => {
   );
 };
 
-export default EntryScreen;
+export default () => {
+  return (
+    <ContextProvider>
+      <EntryScreen />
+    </ContextProvider>
+  )
+}

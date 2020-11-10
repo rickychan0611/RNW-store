@@ -8,6 +8,7 @@ import {
   Column,
   Image,
   ScrollView,
+  Button
 } from 'react-native-web-ui-components';
 import resource from '../utils/resource';
 import getMenu from '../utils/getMenu';
@@ -111,8 +112,10 @@ const SideMenu = ({ user }) => {
         </Column>
       </Row>
       <ScrollView style={styles.scrollView}>
-        {getMenu(user).map(item => (
+          {getMenu(user).map(item => (
           <Column key={item.label} xs={12} style={styles.menuItemOuterColumn}>
+            
+            <Button to="NetworkError" >menu 1</Button>
             <NavLink
               exact
               type="white"

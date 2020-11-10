@@ -54,7 +54,9 @@
     "web:build": "./node_modules/.bin/cross-env NODE_OPTIONS=--max_old_space_size=4096 SKIP_PREFLIGHT_CHECK=true yarn react-app-rewired build && node scripts/postbuild.js",
     "web:server": "yarn web:build && yarn web:server:run",
     "web:server:run": "./node_modules/.bin/cross-env TZ=UTC NODE_ENV=production BABEL_ENV=production SERVER=1 node -r esx/optimize server/bootstrap.js",
-    "lint": "eslint ./src -c ./.eslintrc --ext .js"
+    "lint": "eslint ./src -c ./.eslintrc --ext .js",
+    "predeploy": "expo build:web",
+    "deploy": "npm run predeploy && firebase deploy --only hosting"
   },
   "dependencies": {
     "@apollo/client": "3.2.5",
@@ -65,6 +67,8 @@
     "dotenv": "8.2.0",
     "expo": "39.0.4",
     "expo-web-browser": "8.5.0",
+    "firebase": "7.9.0",
+    "firebase-tools": "^8.15.1",
     "graphql": "15.4.0",
     "history": "4.10.1",
     "js-cookie": "2.2.1",
@@ -77,6 +81,8 @@
     "react-art": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.0.tar.gz",
+    "react-native-elements": "^3.0.0-alpha.1",
+    "react-native-elevation": "^1.0.0",
     "react-native-web": "0.13.1",
     "react-native-web-jsonschema-form": "3.1.2",
     "react-native-web-ui-components": "5.0.1",
@@ -85,6 +91,7 @@
     "react-router-dom": "5.2.0",
     "react-router-native": "5.2.0",
     "resize-observer-polyfill": "1.5.1",
+    "styled-components": "^5.2.1",
     "underscore.string": "3.3.5"
   },
   "browserslist": [
