@@ -11,6 +11,7 @@ const ContextProvider = ({ children }) => {
   const [total, setTotal] = useState(0);
   const [newOrderProductList, setNewOrderProductList] = useState([]);
   const [selected, setSelected] = useState("home");
+  const [leftOpen, setLeftOpen] = useState(false);
 
   // useEffect(() => {
   //   auth.onAuthStateChanged((user) => {
@@ -32,7 +33,9 @@ const ContextProvider = ({ children }) => {
           selectedCat, setSelectedCat,
           selectedItem, setSelectedItem,
           newOrderProductList, setNewOrderProductList,
-          selected, setSelected
+          selected, setSelected,
+          leftOpen, setLeftOpen,
+          
         }
       }
     >

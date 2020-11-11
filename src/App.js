@@ -7,6 +7,7 @@ import EntryScreen from './screens';
 import theme from './theme';
 import Router from './components/Router';
 import Switch from './components/Switch';
+import BottomBar from './components/BottomBar';
 
 const history = createHistory();
 

@@ -34,9 +34,91 @@ const Home = (props) => {
     <>
       <MainContainer>
         <Head />
-        <Header {...props} />
+        <Header />
         <LimitedContainer>
+        <Column
+            xs={12}
+            md={6}
+            style={[styles.leftColumn, { height }]}
+            className="Home__leftColumn"
+          >
+            <Title id="Home" type="gray" level={1} style={styles.h1}>
+              Write once, run anywhere!
+          </Title>
+            <Text>
+              This page was generated with&nbsp;
+            <Link to="https://github.com/CareLuLu/react-native-web-skeleton">
+                React Native Web Skeleton!
+            </Link>
+            &nbsp;This is a multiplatform production ready app coded for Android,
+            iOS, Mobile Web Responsiveness, Web Client-side Rendering (CSR), Server-side
+            Rendering (SSR) and Google Accelerated Mobile Pages (AMP).
+          </Text>
+            <Button
+              style={styles.seeOnGithubButton}
+              to="https://github.com/CareLuLu/react-native-web-skeleton"
+            >
+              See on Github!
+          </Button>
+          </Column>
           <Column
+            xs={12}
+            md={6}
+            style={[styles.rightColumn, { height }]}
+            className="Home__rightColumn"
+          >
+            <Image
+              fixed
+              style={mobileDemoStyle}
+              source={{
+                uri: resource('https://divin2sy6ce0b.cloudfront.net/images/iphone-demo.gif'),
+              }}
+            />
+            <Link type="lightGray" to="https://www.ramotion.com/" style={styles.imageDisclaimer}>
+              Image: Ramotion
+          </Link>
+          </Column><Column
+            xs={12}
+            md={6}
+            style={[styles.leftColumn, { height }]}
+            className="Home__leftColumn"
+          >
+            <Title id="Home" type="gray" level={1} style={styles.h1}>
+              Write once, run anywhere!
+          </Title>
+            <Text>
+              This page was generated with&nbsp;
+            <Link to="https://github.com/CareLuLu/react-native-web-skeleton">
+                React Native Web Skeleton!
+            </Link>
+            &nbsp;This is a multiplatform production ready app coded for Android,
+            iOS, Mobile Web Responsiveness, Web Client-side Rendering (CSR), Server-side
+            Rendering (SSR) and Google Accelerated Mobile Pages (AMP).
+          </Text>
+            <Button
+              style={styles.seeOnGithubButton}
+              to="https://github.com/CareLuLu/react-native-web-skeleton"
+            >
+              See on Github!
+          </Button>
+          </Column>
+          <Column
+            xs={12}
+            md={6}
+            style={[styles.rightColumn, { height }]}
+            className="Home__rightColumn"
+          >
+            <Image
+              fixed
+              style={mobileDemoStyle}
+              source={{
+                uri: resource('https://divin2sy6ce0b.cloudfront.net/images/iphone-demo.gif'),
+              }}
+            />
+            <Link type="lightGray" to="https://www.ramotion.com/" style={styles.imageDisclaimer}>
+              Image: Ramotion
+          </Link>
+          </Column><Column
             xs={12}
             md={6}
             style={[styles.leftColumn, { height }]}
@@ -78,10 +160,9 @@ const Home = (props) => {
               Image: Ramotion
           </Link>
           </Column>
-        </LimitedContainer>
         <Footer />
+        </LimitedContainer>
       </MainContainer>
-      <BottomBar />
     </>
   );
 };

@@ -1,12 +1,12 @@
-import React from 'react';
-import { StyleSheet, Platform } from 'react-native';
+import React, {useContext} from 'react';
+import { StyleSheet, Platform, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import {
   Text,
   Row,
   View,
   Column,
-  Button,
+  // Button,
   Container,
 } from 'react-native-web-ui-components';
 import { useAmp } from 'react-native-web-ui-components/Amp';
@@ -17,20 +17,19 @@ import getMenu from '../utils/getMenu';
 import getUrl from '../utils/getUrl';
 import Mustache from './Mustache';
 import NavLink from './NavLink';
+import { Context } from '../context/Context';
 
 const styles = StyleSheet.create({
   row: {
-    paddingTop: Platform.OS === 'web' ? 20 : 35,
-    paddingBottom: Platform.OS === 'web' ? 20 : 15,
+    position: Platform.OS === 'web' ? 'fixed' : 'absolute',
+    zIndex: 1000,
+    paddingTop: Platform.OS === 'web' ? 10 : 30,
+    paddingBottom: Platform.OS === 'web' ? 5 : 4,
     justifyContent: 'center',
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
     shadowOpacity: 0.30,
-    shadowRadius: 4.65,
-    elevation: 8,
+    shadowRadius: 10,
+    elevation: 6,
     backgroundColor: "white"
   },
   leftColumn: {
@@ -57,7 +56,8 @@ const styles = StyleSheet.create({
 });
 
 const Buttons = ({ user }) => {
-  if (user.role === 'VISITOR') {
+  // if (user.role === 'VISITOR') {
+  if (true) {
     return (
       <>
         <Button small to={getUrl('/login')}>
@@ -82,7 +82,7 @@ Buttons.propTypes = {
 
 const Header = ({ user, openLeft }) => {
   const screen = useScreen();
-
+  const { leftOpen, setLeftOpen } = useContext(Context);
   return (
     <Row style={styles.row} className="Header__row">
 
@@ -90,18 +90,21 @@ const Header = ({ user, openLeft }) => {
 
         <Column xs={6} style={styles.leftColumn}>
           <Text type="navy" auto style={styles.logo}>
-            Tin Tin Food Wholesale
+            Tin Tin
           </Text>
         </Column>
 
         <Column xs={6} style={styles.rightColumn}>
           <View style={styles.menuRow}>
             {screen.reduced ? (
-              <Button small onPress={openLeft}>
-                Menu button?
-              </Button>
+              <>
+              <Button title="menu" onPress={()=>{
+                setLeftOpen(!leftOpen)
+                }} />
+                </>
             ) : (
                 <>
+                {/* nav for web */}
                   {getMenu().map(item => (
                     <NavLink
                       auto
@@ -125,11 +128,6 @@ const Header = ({ user, openLeft }) => {
       </Container>
     </Row>
   );
-};
-
-Header.propTypes = {
-  user: PropTypes.shape().isRequired,
-  openLeft: PropTypes.func.isRequired,
 };
 
 export default Header;

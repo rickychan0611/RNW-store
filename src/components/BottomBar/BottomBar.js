@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Platform } from "react-native";
 // import { Link, useRouting } from "expo-next-react-navigation";
 import Elevations from 'react-native-elevation'
 import useQty from '../../hooks/useQty';
@@ -20,7 +20,7 @@ export default function BottomBar() {
 
     return (
     <>
-      <Wrapper style={Elevations[6]}>
+      <Wrapper style={Elevations[6]} position={Platform.OS === "web" ? "fixed" : "absolute"}>
         <ContentArea>
           <Button onPress={() => {
             setSelected("home")
@@ -102,8 +102,9 @@ const Button = styled.TouchableOpacity`
   justify-content: center;
 `;
 const Wrapper = styled.View`
-  position: absolute;
+  position: ${props => props.position};
   bottom: 0;
+  z-index: 1000;
   height: 65px;
   width: 100%;
   flex: 1;

@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Platform, StyleSheet, View } from 'react-native';
-import { StylePropType } from 'react-native-web-ui-components';
 
 const styles = StyleSheet.create({
   empty: {},
@@ -20,15 +18,5 @@ const Layout = ({ style, children }) => (
     {children}
   </View>
 );
-
-Layout.propTypes = {
-  style: StylePropType,
-  children: PropTypes.node,
-};
-
-Layout.defaultProps = {
-  style: styles.empty,
-  children: null,
-};
 
 export default Layout;

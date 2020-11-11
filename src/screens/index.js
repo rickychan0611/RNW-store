@@ -1,6 +1,7 @@
 import React from 'react';
 import ContextProvider from '../context/Context';
-
+import styled from 'styled-components';
+import { View } from 'react-native';
 import { Redirect, useLocation } from 'react-router';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import { isSSR } from 'react-native-web-ui-components/utils';
@@ -15,6 +16,8 @@ import storage from '../utils/storage';
 import { INITIAL_PAGE } from '../config';
 import routes from './routes';
 import Layout from '../components/Layout';
+import Header from '../components/Header';
+import BottomBar from '../components/BottomBar';
 
 const paramRegex = /(:[a-zA-Z0-9_-]+)($|\/|\\|\?)/g;
 
@@ -111,16 +114,14 @@ const EntryScreen = (props) => {
   }
 
   return (
-    <Layout>
-      {renderRoutes(routes, params)}
-    </Layout>
+    <ContextProvider>
+        <Header {...props} />
+      <Layout>
+        {renderRoutes(routes, params)}
+      </Layout>
+      <BottomBar />
+    </ContextProvider>
   );
 };
 
-export default () => {
-  return (
-    <ContextProvider>
-      <EntryScreen />
-    </ContextProvider>
-  )
-}
+export default EntryScreen

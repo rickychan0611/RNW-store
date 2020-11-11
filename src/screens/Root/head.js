@@ -17,11 +17,11 @@ export const styles = {
 
 export const Head = () => (
   <Helmet>
-    <title>BaseApp</title>
+    <title>Tintin</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <style>
-      {`
+      {/* {`
         * {
           box-sizing: border-box;
         }
@@ -64,7 +64,7 @@ export const Head = () => (
         #sidebar:target [data-class~="AmpSidebar__content"] {
           transform: translateX(0%);
         }
-      `}
+      `} */}
     </style>
   </Helmet>
 );

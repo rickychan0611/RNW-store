@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import { Platform, StyleSheet } from 'react-native';
 import {
@@ -14,6 +14,7 @@ import resource from '../utils/resource';
 import getMenu from '../utils/getMenu';
 import Layout from './Layout';
 import NavLink from './NavLink';
+import { Context } from '../context/Context';
 
 const styles = StyleSheet.create({
   background: {
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
 });
 
 const SideMenu = ({ user }) => {
+  const {leftOpen, setLeftOpen} = useContext(Context);
   const source = {
     uri: resource(user.image || 'https://divin2sy6ce0b.cloudfront.net/images/greyProfileFinal2.png'),
   };
@@ -114,9 +116,7 @@ const SideMenu = ({ user }) => {
       <ScrollView style={styles.scrollView}>
           {getMenu(user).map(item => (
           <Column key={item.label} xs={12} style={styles.menuItemOuterColumn}>
-            
-            <Button to="NetworkError" >menu 1</Button>
-            <NavLink
+           <NavLink
               exact
               type="white"
               activeType="navySidemenu"

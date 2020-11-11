@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { View, Container, StylePropType } from 'react-native-web-ui-components';
 import { Helmet, style } from 'react-native-web-ui-components/Helmet';
 
@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   container: {
-    paddingBottom: 30,
+    paddingTop: Platform.OS === 'web' ? 90 : 90,
+    paddingBottom: 80,
   },
 });
 
@@ -21,7 +22,7 @@ const LimitedContainer = ({ children, style: styleProp }) => (
         {`
           @media (min-width: 992px) {
             [data-class~="LimitedContainer__view"] {
-              padding-top: 30px;
+              padding-top: 60px;
             }
           }
         `}

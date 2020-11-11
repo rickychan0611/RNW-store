@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Platform } from 'react-native';
 import { get, noop, cloneDeep } from 'lodash';
@@ -19,8 +19,10 @@ import storage from '../../utils/storage';
 import { Provider as ReRenderProvider } from '../../utils/reRender';
 import SideMenu from '../../components/SideMenu';
 import PageLoading from '../../components/PageLoading';
+import Header from '../../components/Header';
 import PageScrollView, { useScrollTop } from '../../components/PageScrollView';
 import { Head, styles } from './head';
+import {Context} from '../../context/Context';
 
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 
@@ -124,8 +126,7 @@ const RootContent = memo((props) => {
 
   return (
     <>
-      {/* {amp ? <AmpSidebar leftComponent={leftComponent} /> : null} */}
-      <Head />
+        {/* <Header {...props} /> */}
       <Sidebar
         {...props}
         leftOnChange={setLeftOpen}
@@ -136,6 +137,7 @@ const RootContent = memo((props) => {
         <Container style={styles.background}>
           {Platform.OS === 'web' && !window.FIRST_PAGE && !isSSR() ? <PageLoading {...props} /> : null}
           <ReRenderProvider value={reRender}>
+
             <PageScrollView>
               {renderRoutes(route.routes, { ...props, useScrollTop })}
             </PageScrollView>
@@ -166,7 +168,6 @@ RootContent.propTypes = {
 ///////////////////Here is the root!
 
 const Root = (props) => {
-  console.log([props])
   const { history } = props;
 
   const onClose = () => {
@@ -186,7 +187,8 @@ const Root = (props) => {
 
   const screen = useScreen();
 
-  const [leftOpen, setLeftOpen] = useState(false);
+  // const [leftOpen, setLeftOpen] = useState(false);
+  const { leftOpen, setLeftOpen } = useContext(Context);
   const openLeft = () => setLeftOpen(true);
 
   const { loading, refetch, ...result } = useQuery(USER_CURRENT, {
@@ -231,4 +233,4 @@ Root.propTypes = {
   queryParams: PropTypes.shape().isRequired,
 };
 
-export default Root;
+export default Root
